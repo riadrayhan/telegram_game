@@ -10,15 +10,15 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  // Your Telegram bot token and Render site link
+  // Your Telegram bot token and Vercel site link
   final String telegramBotToken = '8145483732:AAFwmO7FRqGScXXybCpRkHU1_HJVpFR_iEE';
-  final String renderSiteLink = 'http://telegramgame.s3-website-ap-southeast-2.amazonaws.com'; // AWS link
+  final String vercelSiteLink = 'https://telegram-game-24h3.vercel.app'; // Vercel link
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Telegram Games"),
+        title: const Text("Telegram Game1"),
         centerTitle: true,
         backgroundColor: Colors.orange[100],
       ),
@@ -69,13 +69,25 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  // Function to send a message to the fetched chat ID
+  // Function to send a message with a Web App button to the fetched chat ID
   Future<void> _sendMessageToTelegram(String chatId) async {
     final String telegramApiUrl = 'https://api.telegram.org/bot$telegramBotToken/sendMessage';
 
     final Map<String, dynamic> messageData = {
       'chat_id': chatId, // Chat ID fetched from the getUpdates API
-      'text': 'The game has started! Visit $renderSiteLink to play the game.'
+      'text': 'The game has started! Click the button below to play the game inside Telegram.',
+      'reply_markup': jsonEncode({
+        'inline_keyboard': [
+          [
+            {
+              'text': 'Play Game',
+              'web_app': {
+                'url': vercelSiteLink
+              }
+            }
+          ]
+        ]
+      })
     };
 
     try {
