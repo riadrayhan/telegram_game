@@ -17,11 +17,11 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   // Your Telegram bot token and Vercel site link
-  final String telegramBotToken = '8145483732:AAFwmO7FRqGScXXybCpRkHU1_HJVpFR_iEE';
+  final String telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN'; // Add your token
   final String vercelSiteLink = 'https://telegram-game-lovat.vercel.app'; // Vercel link
 
-  int page=0;
-  final pages=[
+  int page = 0;
+  final pages = [
     MainPage(),
     TaskPage(),
     InstructionPage(),
@@ -31,22 +31,27 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: pages[page],
       bottomNavigationBar: CurvedNavigationBar(
-          items: [
-            Icon(Icons.home,),
-            Icon(Icons.task),
-            Icon(Icons.details),
-            Icon(Icons.wallet_giftcard),
-          ],
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.task),
+          Icon(Icons.details),
+          Icon(Icons.wallet_giftcard),
+        ],
         onTap: (value) {
           setState(() {
-            page=value;
+            page = value;
           });
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _sendStartGameMessage(); // Send the game start message when the app starts
   }
 
   // Function to fetch chat ID and send a start game message to Telegram via the bot API
@@ -92,7 +97,7 @@ class _HomepageState extends State<Homepage> {
             {
               'text': 'Play Game',
               'web_app': {
-                'url': vercelSiteLink
+                'url': vercelSiteLink // Web app URL
               }
             }
           ]
