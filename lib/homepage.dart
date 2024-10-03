@@ -17,7 +17,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   // Your Telegram bot token and Vercel site link
-  final String telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN'; // Add your token
+  final String telegramBotToken = '8145483732:AAFwmO7FRqGScXXybCpRkHU1_HJVpFR_iEE'; // Add your token
   final String vercelSiteLink = 'https://telegram-game-lovat.vercel.app'; // Vercel link
 
   int page = 0;
