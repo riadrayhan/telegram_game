@@ -1,6 +1,12 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:telegram_game/main_page.dart';
+import 'package:telegram_game/wallet_page.dart';
+import 'package:telegram_game/task_page.dart';
+import 'package:telegram_game/Instruction.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -12,30 +18,33 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   // Your Telegram bot token and Vercel site link
   final String telegramBotToken = '8145483732:AAFwmO7FRqGScXXybCpRkHU1_HJVpFR_iEE';
-  final String vercelSiteLink = 'https://telegram-game-xukv.vercel.app'; // Vercel link
+  final String vercelSiteLink = 'https://telegram-game-q4s1.vercel.app'; // Vercel link
+
+  int page=0;
+  final pages=[
+    MainPage(),
+    TaskPage(),
+    InstructionPage(),
+    WalletPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Telegram Game1"),
-        centerTitle: true,
-        backgroundColor: Colors.orange[100],
-      ),
-      body: Center(
-        child: ColoredBox(
-          color: Colors.deepOrangeAccent,
-          child: TextButton(
-            onPressed: () {
-              // Trigger fetching chat ID and sending message when the game starts
-              _sendStartGameMessage();
-            },
-            child: const Text(
-              "Let's Start the Game",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
+
+      body: pages[page],
+      bottomNavigationBar: CurvedNavigationBar(
+          items: [
+            Icon(Icons.home,),
+            Icon(Icons.task),
+            Icon(Icons.details),
+            Icon(Icons.wallet_giftcard),
+          ],
+        onTap: (value) {
+          setState(() {
+            page=value;
+          });
+        },
       ),
     );
   }
