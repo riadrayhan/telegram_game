@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'dart:developer';
 import 'package:telegram_game/main_page.dart';
 import 'package:telegram_game/wallet_page.dart';
 import 'package:telegram_game/task_page.dart';
@@ -23,8 +23,8 @@ class _HomepageState extends State<Homepage> {
   int page = 0;
   final pages = [
     MainPage(),
-    TaskPage(),
-    InstructionPage(),
+    TaskPage(onMergePoints: (int ) {  },),
+    Instruction(),
     WalletPage()
   ];
 
@@ -35,7 +35,7 @@ class _HomepageState extends State<Homepage> {
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           Icon(Icons.home),
-          Icon(Icons.task),
+          Icon(Icons.currency_bitcoin),
           Icon(Icons.details),
           Icon(Icons.wallet_giftcard),
         ],

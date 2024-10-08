@@ -39,6 +39,8 @@ dependencies:
   shared_preferences:
   curved_navigation_bar:
   timer_button: ^2.1.1
+  url_launcher:
+  ton_dart: ^0.1.2
 
 dev_dependencies:
   flutter_test:
